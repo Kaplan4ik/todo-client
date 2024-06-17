@@ -14,7 +14,9 @@ const Layout = () => {
         </ul>
       </nav>
 
-      <Outlet />
+      <div className={'container'}>
+        <Outlet />
+      </div>
     </>
   );
 };
