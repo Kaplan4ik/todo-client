@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 interface TodoCreateProps {
   // eslint-disable-next-line no-unused-vars
-  createTodo: (todo: { id: number; title: string; completed: boolean }) => void;
+  createTodo: (title: string) => void;
 }
 
 export const TodoCreate: FC<TodoCreateProps> = ({ createTodo }) => {
@@ -12,12 +12,7 @@ export const TodoCreate: FC<TodoCreateProps> = ({ createTodo }) => {
 
   const addTodo = () => {
     if (newTodoTitle.trim() !== '') {
-      const newTodo = {
-        id: Date.now(),
-        title: newTodoTitle,
-        completed: false,
-      };
-      createTodo(newTodo);
+      createTodo(newTodoTitle);
       setNewTodoTitle('');
       setIsAdding(false);
     }

@@ -24,6 +24,9 @@
       "features/*": [
         "features/*"
       ],
+      "environment/*": [
+        "environment/*"
+      ],
       "assets/*": [
         "assets/*"
       ]
