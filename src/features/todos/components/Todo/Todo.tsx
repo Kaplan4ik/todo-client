@@ -4,7 +4,7 @@ import type { ITodo } from 'features/todos/interfaces';
 
 interface TodoProps extends ITodo {
   // eslint-disable-next-line no-unused-vars
-  onChangeHandler: (id: number) => void;
+  onChangeHandler: (id: number, completed: boolean) => void;
   // eslint-disable-next-line no-unused-vars
   onDelete: (id: number) => void;
 }
@@ -17,7 +17,7 @@ export const Todo: FC<TodoProps> = ({
   onDelete,
 }) => {
   const test = () => {
-    onChangeHandler(id);
+    onChangeHandler(id, !completed);
   };
 
   return (

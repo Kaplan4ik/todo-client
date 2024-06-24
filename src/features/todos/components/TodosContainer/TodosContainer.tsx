@@ -8,8 +8,8 @@ import { TodoDaoService } from 'features/todos/services';
 export const TodosContainer: FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
-  const onToggle = async (id: number) => {
-    const updatedTodos = await TodoDaoService.updateTodo(id);
+  const onToggle = async (id: number, completed: boolean) => {
+    const updatedTodos = await TodoDaoService.updateTodo(id, completed);
     setTodos(updatedTodos);
   };
 

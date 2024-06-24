@@ -22,9 +22,9 @@ async function deleteTodo(id: number): Promise<ITodo[]> {
   return response.data;
 }
 
-async function updateTodo(id: number): Promise<ITodo[]> {
+async function updateTodo(id: number, completed: boolean): Promise<ITodo[]> {
   const route = `todo/${id}`;
-  const response = await axios.patch(route);
+  const response = await axios.patch(route, { completed });
 
   return response.data;
 }
