@@ -9,7 +9,7 @@ module.exports = {
     'eslint-config-prettier',
     'plugin:import/recommended'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -44,6 +44,6 @@ module.exports = {
       { prefer: 'type-imports' }
     ],
     'import/order': ['warn', { 'newlines-between': 'always' }],
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'error'
   }
 };
