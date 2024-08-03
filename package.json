@@ -20,6 +20,8 @@
     "react-router-dom": "^6.23.1",
     "vite-tsconfig-paths": "^4.3.2"
   },
+  "babulya": "1919",
+  "didulya": "chort",
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
