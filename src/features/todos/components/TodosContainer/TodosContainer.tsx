@@ -9,23 +9,39 @@ export const TodosContainer: FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   const onToggle = async (id: number, completed: boolean) => {
-    const updatedTodos = await TodoDaoService.updateTodo(id, completed);
-    setTodos(updatedTodos);
+    try {
+      const updatedTodos = await TodoDaoService.updateTodo(id, completed);
+      setTodos(updatedTodos);
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
   const deleteTodo = async (id: number) => {
-    const updatedTodos = await TodoDaoService.deleteTodo(id);
-    setTodos(updatedTodos);
+    try {
+      const updatedTodos = await TodoDaoService.deleteTodo(id);
+      setTodos(updatedTodos);
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
   const addTodoHandler = async (newTodoTitle: string) => {
-    const updatedTodos = await TodoDaoService.createTodo(newTodoTitle);
-    setTodos(updatedTodos);
+    try {
+      const updatedTodos = await TodoDaoService.createTodo(newTodoTitle);
+      setTodos(updatedTodos);
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
   const fetchTodos = async () => {
-    const response = await TodoDaoService.getTodos();
-    setTodos(response);
+    try {
+      const response = await TodoDaoService.getTodos();
+      setTodos(response);
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
   useEffect(() => {
@@ -34,16 +50,17 @@ export const TodosContainer: FC = () => {
 
   return (
     <>
-      {todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          id={todo.id}
-          title={todo.title}
-          completed={todo.completed}
-          onChangeHandler={onToggle}
-          onDelete={deleteTodo}
-        />
-      ))}
+      {Array.isArray(todos) &&
+        todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            completed={todo.completed}
+            onChangeHandler={onToggle}
+            onDelete={deleteTodo}
+          />
+        ))}
       <TodoCreate createTodo={addTodoHandler} />
     </>
   );
