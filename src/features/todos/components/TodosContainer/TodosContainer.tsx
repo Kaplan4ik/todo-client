@@ -6,6 +6,9 @@ import type { ITodo } from 'features/todos/interfaces';
 import { TodoDaoService } from 'features/todos/services';
 
 export const TodosContainer: FC = () => {
+  console.group('TodosContainer.tsx', 'TodosContainer', '9');
+  console.log('DEBUG1', 123);
+  console.groupEnd();
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   const onToggle = async (id: number, completed: boolean) => {
