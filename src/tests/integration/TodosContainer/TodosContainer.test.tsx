@@ -4,11 +4,13 @@ import { describe, expect, it, vi } from 'vitest';
 import { TodosContainer } from 'features/todos/components';
 import { defaultTodos } from 'features/todos/mocks';
 import { TodoDaoService } from 'features/todos/services';
-import { act, render, screen } from 'tests/helpers';
+import { act, authProviderHelper, render, screen } from 'tests/helpers';
 
 vi.mock('features/todos/services/TodoDaoService');
 
 describe('TodosContainer', () => {
+  authProviderHelper();
+
   it('should triggered createTodo', async () => {
     const createTodoSpy = vi
       .spyOn(TodoDaoService, 'createTodo')

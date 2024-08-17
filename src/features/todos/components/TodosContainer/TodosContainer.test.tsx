@@ -4,13 +4,15 @@ import { TodosContainer } from 'features/todos/components';
 import type { ITodo } from 'features/todos/interfaces';
 import { defaultTodos } from 'features/todos/mocks';
 import { TodoDaoService } from 'features/todos/services';
-import { act, render, screen } from 'tests/helpers';
+import { act, authProviderHelper, render, screen } from 'tests/helpers';
 
 vi.mock('features/todos/components/Todo/Todo');
 vi.mock('features/todos/components/TodoCreate/TodoCreate');
 vi.mock('features/todos/services/TodoDaoService');
 
 describe('TodosContainer', () => {
+  authProviderHelper();
+
   it('should works correctly with wrong response', async () => {
     vi.spyOn(TodoDaoService, 'getTodos').mockResolvedValue({} as ITodo[]);
 
