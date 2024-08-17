@@ -1,9 +1,13 @@
 import axios from 'config/axiosConfig';
 import type { ITodo } from 'features/todos/interfaces';
 
-async function getTodos(): Promise<ITodo[]> {
+async function getTodos(token: string): Promise<ITodo[]> {
   const route = 'todo';
-  const response = await axios.get(route);
+  const response = await axios.get(route, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response.data;
 }

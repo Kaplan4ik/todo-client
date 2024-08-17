@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 
@@ -7,6 +8,7 @@ import { TodoDaoService } from 'features/todos/services';
 
 export const TodosContainer: FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const { getAccessTokenSilently } = useAuth0();
 
   const onToggle = async (id: number, completed: boolean) => {
     try {
@@ -37,7 +39,8 @@ export const TodosContainer: FC = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await TodoDaoService.getTodos();
+      const token = await getAccessTokenSilently();
+      const response = await TodoDaoService.getTodos(token);
       setTodos(response);
     } catch (error: any) {
       throw new Error(error);
@@ -46,6 +49,7 @@ export const TodosContainer: FC = () => {
 
   useEffect(() => {
     fetchTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
