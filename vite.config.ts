@@ -22,5 +22,8 @@ export default defineConfig({
       include: ['src/**/*'],
       exclude: []
     }
+  },
+  server: {
+    port: 3000
   }
 });
