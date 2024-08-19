@@ -25,7 +25,7 @@ describe('TodosContainer', () => {
     );
     await userEvent.click(screen.getByText('Save'));
 
-    expect(createTodoSpy).toHaveBeenCalledWith('New todo');
+    expect(createTodoSpy).toHaveBeenCalledWith('New todo', 'test-token');
   });
 
   it('should triggered updateTodo', async () => {
@@ -37,7 +37,7 @@ describe('TodosContainer', () => {
     });
 
     await userEvent.click(screen.getAllByTestId('todo-checkbox')[0]);
-    expect(updateTodoSpy).toHaveBeenCalledWith(1, true);
+    expect(updateTodoSpy).toHaveBeenCalledWith(1, true, 'test-token');
   });
 
   it('should triggered deleteTodo', async () => {
@@ -49,7 +49,7 @@ describe('TodosContainer', () => {
     });
 
     await userEvent.click(screen.getAllByText('Delete')[0]);
-    expect(deleteTodoSpy).toHaveBeenCalledWith(1);
+    expect(deleteTodoSpy).toHaveBeenCalledWith(1, 'test-token');
   });
 });
 

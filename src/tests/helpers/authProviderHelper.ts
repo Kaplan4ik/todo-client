@@ -8,7 +8,7 @@ export function authProviderHelper() {
     user: { name: 'Test User', email: 'testuser@example.com' },
     logout: vi.fn(),
     loginWithRedirect: vi.fn(),
-    getAccessTokenSilently: vi.fn(),
+    getAccessTokenSilently: vi.fn().mockReturnValue('test-token'),
   } as unknown as Auth0ContextInterface;
   vi.spyOn(useAuth0, 'useAuth0').mockReturnValue(mockAuth0);
 }
