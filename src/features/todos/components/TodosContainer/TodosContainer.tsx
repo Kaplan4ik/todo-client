@@ -12,7 +12,12 @@ export const TodosContainer: FC = () => {
 
   const onToggle = async (id: number, completed: boolean) => {
     try {
-      const updatedTodos = await TodoDaoService.updateTodo(id, completed);
+      const token = await getAccessTokenSilently();
+      const updatedTodos = await TodoDaoService.updateTodo(
+        id,
+        completed,
+        token,
+      );
       setTodos(updatedTodos);
     } catch (error: any) {
       throw new Error(error);
@@ -21,7 +26,8 @@ export const TodosContainer: FC = () => {
 
   const deleteTodo = async (id: number) => {
     try {
-      const updatedTodos = await TodoDaoService.deleteTodo(id);
+      const token = await getAccessTokenSilently();
+      const updatedTodos = await TodoDaoService.deleteTodo(id, token);
       setTodos(updatedTodos);
     } catch (error: any) {
       throw new Error(error);
@@ -30,7 +36,8 @@ export const TodosContainer: FC = () => {
 
   const addTodoHandler = async (newTodoTitle: string) => {
     try {
-      const updatedTodos = await TodoDaoService.createTodo(newTodoTitle);
+      const token = await getAccessTokenSilently();
+      const updatedTodos = await TodoDaoService.createTodo(newTodoTitle, token);
       setTodos(updatedTodos);
     } catch (error: any) {
       throw new Error(error);
