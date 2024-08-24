@@ -2,8 +2,8 @@ import axios from 'config/axiosConfig';
 import type { ITodo } from 'features/todos/interfaces';
 
 //TODO: Implement httpService for avoiding code duplication
-async function getTodos(token: string): Promise<ITodo[]> {
-  const route = 'todo';
+async function getTodos(token: string, userId: string): Promise<ITodo[]> {
+  const route = `todo/${userId}`;
   const response = await axios.get(route, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -16,8 +16,9 @@ async function getTodos(token: string): Promise<ITodo[]> {
 async function createTodo(
   newTodoTitle: string,
   token: string,
+  userId: string,
 ): Promise<ITodo[]> {
-  const route = 'todo';
+  const route = `todo/${userId}`;
   const response = await axios.post(
     route,
     { title: newTodoTitle },
@@ -31,8 +32,12 @@ async function createTodo(
   return response.data;
 }
 
-async function deleteTodo(id: number, token: string): Promise<ITodo[]> {
-  const route = `todo/${id}`;
+async function deleteTodo(
+  id: number,
+  token: string,
+  userId: string,
+): Promise<ITodo[]> {
+  const route = `todo/${userId}/${id}`;
   const response = await axios.delete(route, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -46,8 +51,9 @@ async function updateTodo(
   id: number,
   completed: boolean,
   token: string,
+  userId: string,
 ): Promise<ITodo[]> {
-  const route = `todo/${id}`;
+  const route = `todo/${userId}/${id}`;
   const response = await axios.patch(
     route,
     { completed },
