@@ -8,15 +8,24 @@ import { TodoDaoService } from 'features/todos/services';
 
 export const TodosContainer: FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, user } = useAuth0();
+  const getUserId = () => {
+    if (!user || !user.sub) {
+      return '';
+    }
+    return user.sub.split('|')[1];
+  };
 
+  //TODO: Find solution how we can remove userId from all functions
   const onToggle = async (id: number, completed: boolean) => {
     try {
       const token = await getAccessTokenSilently();
+      const userId = getUserId();
       const updatedTodos = await TodoDaoService.updateTodo(
         id,
         completed,
         token,
+        userId,
       );
       setTodos(updatedTodos);
     } catch (error: any) {
@@ -27,7 +36,8 @@ export const TodosContainer: FC = () => {
   const deleteTodo = async (id: number) => {
     try {
       const token = await getAccessTokenSilently();
-      const updatedTodos = await TodoDaoService.deleteTodo(id, token);
+      const userId = getUserId();
+      const updatedTodos = await TodoDaoService.deleteTodo(id, token, userId);
       setTodos(updatedTodos);
     } catch (error: any) {
       throw new Error(error);
@@ -37,7 +47,12 @@ export const TodosContainer: FC = () => {
   const addTodoHandler = async (newTodoTitle: string) => {
     try {
       const token = await getAccessTokenSilently();
-      const updatedTodos = await TodoDaoService.createTodo(newTodoTitle, token);
+      const userId = getUserId();
+      const updatedTodos = await TodoDaoService.createTodo(
+        newTodoTitle,
+        token,
+        userId,
+      );
       setTodos(updatedTodos);
     } catch (error: any) {
       throw new Error(error);
@@ -47,7 +62,8 @@ export const TodosContainer: FC = () => {
   const fetchTodos = async () => {
     try {
       const token = await getAccessTokenSilently();
-      const response = await TodoDaoService.getTodos(token);
+      const userId = getUserId();
+      const response = await TodoDaoService.getTodos(token, userId);
       setTodos(response);
     } catch (error: any) {
       throw new Error(error);
