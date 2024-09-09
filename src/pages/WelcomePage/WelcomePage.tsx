@@ -4,14 +4,19 @@ import { useEffect } from 'react';
 import { UserDaoService } from 'features/user/services';
 
 const WelcomePage = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  const fetchCurrentUser = async () => {
+    if (isAuthenticated) {
+      const token = await getAccessTokenSilently();
+      await UserDaoService.currentUser(token);
+    }
+  };
 
   useEffect(() => {
-    if (isAuthenticated && user && user.sub) {
-      //TODO: Maybe I can find better place for this
-      UserDaoService.createUser(user.sub.split('|')[1]);
-    }
-  }, [isAuthenticated, user]);
+    fetchCurrentUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   return (
     <div>
