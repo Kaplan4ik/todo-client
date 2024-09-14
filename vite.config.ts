@@ -6,6 +6,17 @@ import { configDefaults } from 'vitest/config';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
+  build: {
+    sourcemap: true,
+    outDir: 'build',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[ext]',
+        chunkFileNames: 'chunks/[name].js',
+        entryFileNames: '[name].js'
+      }
+    }
+  },
   test: {
     include: ['src/**/*.test.{ts,tsx}'],
     exclude: [
