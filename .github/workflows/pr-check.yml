@@ -24,6 +24,18 @@ jobs:
       - name: Tests
         run: pnpm run test
 
+      - name: Log environment variables
+        run:
+          echo "VITE_APP_API_URL:
+            $VITE_APP_API_URL, VITE_APP_AUTH0_DOMAIN:
+              $VITE_APP_AUTH0_DOMAIN, VITE_APP_AUTH0_AUDIENCE:
+                $VITE_APP_AUTH0_AUDIENCE, VITE_APP_AUTH0_CLIENT_ID: $VITE_APP_AUTH0_CLIENT_ID"
+        env:
+          VITE_APP_API_URL: ${{ vars.VITE_APP_API_URL }}
+          VITE_APP_AUTH0_DOMAIN: ${{ vars.VITE_APP_AUTH0_DOMAIN }}
+          VITE_APP_AUTH0_AUDIENCE: ${{ vars.VITE_APP_AUTH0_AUDIENCE }}
+          VITE_APP_AUTH0_CLIENT_ID: ${{ secrets.VITE_APP_AUTH0_CLIENT_ID }}
+
       - name: Build
         run: pnpm run build
         env:
