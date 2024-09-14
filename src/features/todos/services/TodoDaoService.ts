@@ -1,7 +1,7 @@
 import axios from 'config/axiosConfig';
 import type { ITodo } from 'features/todos/interfaces';
 
-//TODO: Implement httpService for avoiding code duplication
+//TODO: Implement httpService for avoiding code duplication with auth token
 async function getTodos(token: string): Promise<ITodo[]> {
   const route = `todo`;
   const response = await axios.get(route, {
