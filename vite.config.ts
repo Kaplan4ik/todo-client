@@ -17,6 +17,7 @@ export default defineConfig({
       }
     }
   },
+  base: '/latest/',
   test: {
     include: ['src/**/*.test.{ts,tsx}'],
     exclude: [
