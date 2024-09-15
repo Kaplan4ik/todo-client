@@ -7,7 +7,6 @@ import { configDefaults } from 'vitest/config';
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   build: {
-    sourcemap: true,
     outDir: 'build',
     rollupOptions: {
       output: {
