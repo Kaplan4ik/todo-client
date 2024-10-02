@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# Todo Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [Introduction](#introduction)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Usage](#usage)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Welcome to todo-client, a front-end project designed to provide a seamless and secure to-do list management experience. This application integrates Auth0 for user authentication, allowing users to sign in and manage their personalized to-do lists. Each user has access to their own unique set of tasks, ensuring privacy and data security.
 
-- Configure the top-level `parserOptions` property like this:
+The application also connects to a back-end service, enabling the storage of all to-do list entries in a database. This ensures that users can access and manage their tasks across sessions and devices. With multi-user support, each user can independently create, update, and track their to-do lists without interference from others.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+---
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Dependencies
+
+- [pnpm](https://pnpm.io/)
+  - install via npm with `npm install -g pnpm`
+
+---
+
+## Installation
+
+- Clone the repository
+- Install the dependencies with `pnpm install`
+- Create a `.env` file in the root of the project ( ideally by copying `.env.example` ).
+
+> [!WARNING]
+> Without the required environment variables, the project will not run. Please ensure that you have the necessary values in your `.env` file.
+
+- Install husky hooks with `pnpm prepare`
+---
+
+## Usage
+
+- Start the development server with `pnpm dev`
+- Access the application at `http://localhost:3000`
+- Run the tests with `pnpm test`

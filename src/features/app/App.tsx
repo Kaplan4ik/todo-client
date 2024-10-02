@@ -1,11 +1,7 @@
 import { Router } from 'features/router/components';
 
 function App() {
-  return (
-    <>
-      <Router />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
