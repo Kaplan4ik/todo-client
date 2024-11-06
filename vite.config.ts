@@ -12,17 +12,16 @@ export default defineConfig({
       output: {
         assetFileNames: 'assets/[name]-[hash].[ext]',
         chunkFileNames: 'chunks/[name]-[hash].js',
-        entryFileNames: '[name]-[hash].js'
-      }
-    }
+        entryFileNames: '[name]-[hash].js',
+      },
+    },
   },
-  base: '/latest/',
   test: {
     include: ['src/**/*.test.{ts,tsx}'],
     exclude: [
       ...configDefaults.exclude,
       '**/.{husky}/**',
-      '**/{build,coverage,scripts,ops}/**'
+      '**/{build,coverage,scripts,ops}/**',
     ],
     globals: true,
     environment: 'jsdom',
@@ -31,10 +30,10 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'json', 'html', 'lcov'],
       include: ['src/**/*'],
-      exclude: []
-    }
+      exclude: [],
+    },
   },
   server: {
-    port: 3000
-  }
+    port: 3000,
+  },
 });
